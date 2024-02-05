@@ -2,6 +2,7 @@ const bushes = document.querySelectorAll('.bush');
 const scoreBoard = document.querySelector('.score');
 const bunnies = document.querySelectorAll('.bunny');
 const levelDisplay = document.querySelector('.level');
+const carrotsContainer = document.querySelector('.carrots');
 let lastBush;
 let timeUp = false;
 let score = 0;
@@ -34,7 +35,7 @@ function peep() {
     }, time);
   } else {
     timeUp = true;
-    alert('Congratulations! You completed the game!');
+    showCard();
   }
 }
 
@@ -83,6 +84,55 @@ function bonk(e) {
   }
   this.parentNode.classList.remove('up');
   scoreBoard.textContent = score;
+
+  updateCarrots();
+}
+
+function updateCarrots() {
+  carrotsContainer.innerHTML = '';
+  const carrotImage = document.createElement('img');
+  
+  switch (level) {
+    case 1:
+      carrotImage.src = 'level1.png';
+      break;
+    case 2:
+      carrotImage.src = 'level2.png';
+      break;
+    case 3:
+      carrotImage.src = 'level3.png';
+      break;
+    default:
+      carrotImage.src = 'level1.png';
+      break;
+  }
+          
+  carrotImage.classList.add('carrot-image');
+  carrotsContainer.appendChild(carrotImage);
+}
+
+function showCard() {
+  const overlay = document.getElementById('overlay');
+  const alertCard = document.getElementById('alertCard');
+  
+  overlay.style.display = 'block';
+  alertCard.style.display = 'block';
+}
+
+function hideCard() {
+  const overlay = document.getElementById('overlay');
+  const alertCard = document.getElementById('alertCard');
+  
+  overlay.style.display = 'none';
+  alertCard.style.display = 'none';
+}
+
+function playAgain() {
+  hideCard();
+  startGame();
 }
 
 bunnies.forEach(bunny => bunny.addEventListener('click', bonk));
+
+hideCard();
+updateCarrots();

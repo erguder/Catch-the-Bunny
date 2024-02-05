@@ -15,12 +15,17 @@
     <div class="container">
 
         <div>
-            <h1>Catch-the-bunny! <span class="score">0</span></h1>
+            <h1 style="font-size: 7em;">Catch-the-bunny! <span class="score">0</span></h1>
         </div>
         <div>
             <button class="start" onClick="startGame()">Start!</button>
         </div>
-    
+        
+        <div class="header">
+          <h1>Difficulty</h1>
+          <div class="carrots"></div>
+        </div>
+
         <div class="game">
           <div class="bush bush1">
             <div class="bunny"></div>
@@ -42,6 +47,13 @@
           </div>
         </div>
         
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+    <div class="alert-card" id="alertCard">
+      <img class="alertImg" src="win.png">
+      <p class="message">Congratulations! You completed the game!</p>
+      <button class="play-again" onclick="playAgain()">Play Again</button>
     </div>
 
 
